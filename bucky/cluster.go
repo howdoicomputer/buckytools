@@ -116,13 +116,16 @@ func isHealthy(master *JSONRingType, ring []*JSONRingType) bool {
 		// Order, host:instance pair, must be the same.  You configured
 		// your cluster with a CM tool, right?
 		if master.Algo != v.Algo {
+		  log.Printf("Cluster is unhealthy because of unmatched algorithms between %s and %s", master)
 			return false
 		}
 		if len(v.Nodes) != len(master.Nodes) {
+		  log.Printf("Cluster is unhealthy because the number of reported nodes is different between %s and %s", master and v)
 			return false
 		}
 		for j, _ := range v.Nodes {
 			if v.Nodes[j] != master.Nodes[j] {
+			  log.Printf("Cluster is unhealthy because the node order is different between %s and %s", master and v)
 				return false
 			}
 		}
