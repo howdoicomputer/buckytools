@@ -111,6 +111,8 @@ func isHealthy(master *JSONRingType, ring []*JSONRingType) bool {
 	// XXX: Take replicas into account
 	if len(master.Nodes) != len(ring)+1 {
 	  log.Printf("The length of master nodes is less than the hash ring+1, therefore the cluster is unhealthy")
+    log.Printf("The length of the masters nodes is: %s", len(master.Nodes))
+    log.Printf("The length of the ring is: %s", len(ring))
 		return false
 	}
 
