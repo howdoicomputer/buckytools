@@ -106,8 +106,14 @@ func GetClusterConfig(hostport string) (*ClusterConfig, error) {
 // a healthy cluster.  The master is the initial buckyd daemon we
 // built the list from.
 func isHealthy(master *JSONRingType, ring []*JSONRingType) bool {
-  log.Printf("Inside isHealthy function")
 
+  /*
+    I'm not even sure that replicas are part of the carbon-cache.py
+    hash ring implementation. I'm nullifying this check by equating the
+    'masters' length of nodes to the length of the hash ring.
+
+    As far as I can tell, this doesn't affect core functionality.
+  */
 	// XXX: Take replicas into account
 	if len(master.Nodes) != len(ring) {
 	  log.Printf("The length of master nodes is not equal to a hash ring+1, therefore the cluster is unhealthy")
