@@ -106,6 +106,8 @@ func GetClusterConfig(hostport string) (*ClusterConfig, error) {
 // a healthy cluster.  The master is the initial buckyd daemon we
 // built the list from.
 func isHealthy(master *JSONRingType, ring []*JSONRingType) bool {
+  log.Printf("Inside isHealthy function")
+
 	// XXX: Take replicas into account
 	if len(master.Nodes) != len(ring)+1 {
 		return false
